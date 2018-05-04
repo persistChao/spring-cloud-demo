@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: config-server-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/persist_suchao/spring-cloud-config-repo/
+          search-paths: respo
+          default-label: master
+          username: persistsuchao@sina.com
+          password: 199102235suchao
+server:
+  port: 8800
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

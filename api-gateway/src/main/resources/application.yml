@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: api-gateway
+
+server:
+  port: 2018
+zuul:
+  routes:
+    feign-consumer: /api/**
+  #prefix: /gateway
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 30000
+      #path: /api-a/**
+      #禁用 ribbon 将service-id 替换为url 指定主机地址
+      #url: http://localhost:9000
+      #serviceId: eureka-client
+    #gateway:
+    #  path: /gateway
+    #  url:forward: /gateway
+    #禁止映射某个服务 ru eureka-client 如果不设置会自动设置 默认的映射 如/eureka-client/**
+  #ignored-services: eureka-client
+  #ignored-patterns: /**/dc
+
+# 如果不想通过serviceId 即ribbon serviceId: eureka-client 的方式 则可以禁用ribbon 然后指定url
+#ribbon:
+#  eureka:
+#    enabled: false
+#断路器
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectionTimeout: 60000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
