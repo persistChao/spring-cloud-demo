@@ -20,4 +20,5 @@ build/
 nbbuild/
 dist/
 nbdist/
-.nb-gradle/
+i.nb-gradle/
+.mvn/
